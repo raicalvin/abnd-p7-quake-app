@@ -55,5 +55,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         locationTextView.setText(currentEQ.getmLocation());
         dateTextView.setText(currentEQ.getmDate());
 
+        return listItem;
+
     }
 }
