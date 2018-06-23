@@ -10,4 +10,15 @@ public class Earthquake {
 
     }
 
+    public double getmMagnitude() {
+        return mMagnitude;
+    }
+
+    public String getmLocation() {
+        return mLocation;
+    }
+
+    public String getmDate() {
+        return mDate;
+    }
 }
