@@ -9,7 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
@@ -50,12 +54,40 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView magnitudeTextView = (TextView) listItem.findViewById(R.id.magnitude_text_view);
         TextView locationTextView = (TextView) listItem.findViewById(R.id.location_text_view);
         TextView dateTextView = (TextView) listItem.findViewById(R.id.date_text_view);
+        TextView timeTextView = (TextView) listItem.findViewById(R.id.time_text_view);
+
+        Date dateObject = new Date(currentEQ.getTimeInMilliseconds());
+
+        String formattedDate = formatDate(dateObject);
+        dateTextView.setText(formattedDate);
+
+        String formattedTime = formatTime(dateObject);
+        timeTextView.setText(formattedTime);
 
         magnitudeTextView.setText(String.valueOf(currentEQ.getmMagnitude()));
         locationTextView.setText(currentEQ.getmLocation());
-        dateTextView.setText(currentEQ.getmDate());
 
         return listItem;
 
+    }
+
+    /**
+     * Return the formatted date string (i.e. November 29, 2006) from a Date object
+     * @param dateObject
+     * @return
+     */
+    private String formatDate(Date dateObject) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");
+        return dateFormat.format(dateObject);
+    }
+
+    /**
+     * Return the formatted date string (i.e. 1:29 PM) from a Date object
+     * @param dateObject
+     * @return
+     */
+    private String formatTime(Date dateObject) {
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+        return timeFormat.format(dateObject);
     }
 }
