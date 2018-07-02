@@ -60,7 +60,7 @@ public final class QueryUtils {
             for (int i = 0; i < jsonFeaturesArray.length(); i++) {
                 JSONObject propertiesObject = jsonFeaturesArray.getJSONObject(i).getJSONObject("properties");
 
-                String magnitude = propertiesObject.getString("mag");
+                double magnitude = propertiesObject.getDouble("mag");
                 String location = propertiesObject.getString("place");
                 long time = propertiesObject.getLong("time");
                 earthquakes.add(new Earthquake(magnitude, location, time));
