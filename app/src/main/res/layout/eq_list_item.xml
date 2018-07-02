@@ -17,7 +17,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:id="@+id/location_text_view"
+        android:id="@+id/location_offset_text_view"
+        tools:text="San Francisco"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/location_primary_text_view"
         tools:text="San Francisco"/>
 
     <TextView

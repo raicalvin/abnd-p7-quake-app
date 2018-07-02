@@ -19,6 +19,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
     private Context mContext;
     private ArrayList<Earthquake> mEarthquakesList;
+    private static final String LOCATION_SEPARATOR = " of ";
 
     /**
      * Constructor
@@ -52,7 +53,8 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         Earthquake currentEQ = mEarthquakesList.get(position);
 
         TextView magnitudeTextView = (TextView) listItem.findViewById(R.id.magnitude_text_view);
-        TextView locationTextView = (TextView) listItem.findViewById(R.id.location_text_view);
+        TextView offsetLocationTV = (TextView) listItem.findViewById(R.id.location_offset_text_view);
+        TextView primaryLocationTV = (TextView) listItem.findViewById(R.id.location_primary_text_view);
         TextView dateTextView = (TextView) listItem.findViewById(R.id.date_text_view);
         TextView timeTextView = (TextView) listItem.findViewById(R.id.time_text_view);
 
@@ -65,7 +67,10 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         timeTextView.setText(formattedTime);
 
         magnitudeTextView.setText(String.valueOf(currentEQ.getmMagnitude()));
-        locationTextView.setText(currentEQ.getmLocation());
+
+        String splitLocationsText[] = splitLocationString(currentEQ.getmLocation());
+        offsetLocationTV.setText(splitLocationsText[0]);
+        primaryLocationTV.setText(splitLocationsText[1]);
 
         return listItem;
 
@@ -89,5 +94,27 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
     private String formatTime(Date dateObject) {
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
         return timeFormat.format(dateObject);
+    }
+
+    private String[] splitLocationString(String originalLocation) {
+
+        String locationOffset;
+        String primaryLocation;
+        String returnArray[] = new String[2];
+
+        if (originalLocation.contains(LOCATION_SEPARATOR)) {
+            String[] parts = originalLocation.split(LOCATION_SEPARATOR);
+            locationOffset = parts[0] + LOCATION_SEPARATOR;
+            primaryLocation = parts[1];
+        } else {
+            locationOffset = getContext().getString(R.string.near_the);
+            primaryLocation = originalLocation;
+        }
+
+        returnArray[0] = locationOffset;
+        returnArray[1] = primaryLocation;
+
+        return returnArray;
+
     }
 }
