@@ -1,8 +1,10 @@
 package com.example.android.quakereport;
 
 import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +61,12 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView dateTextView = (TextView) listItem.findViewById(R.id.date_text_view);
         TextView timeTextView = (TextView) listItem.findViewById(R.id.time_text_view);
 
+        GradientDrawable magnitudeCircle = (GradientDrawable) magnitudeTextView.getBackground();
+        int magnitudeColor = getMagnitudeColor(currentEQ.getMagnitude());
+        // Need to change the color number into a color resource ID
+        int magnitudeResourceColor = ContextCompat.getColor(getContext(), magnitudeColor);
+        magnitudeCircle.setColor(magnitudeResourceColor);
+
         Date dateObject = new Date(currentEQ.getTimeInMilliseconds());
 
         String formattedDate = formatDate(dateObject);
@@ -67,14 +75,53 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         String formattedTime = formatTime(dateObject);
         timeTextView.setText(formattedTime);
 
-        magnitudeTextView.setText(formatMagnitude(currentEQ.getmMagnitude()));
+        magnitudeTextView.setText(formatMagnitude(currentEQ.getMagnitude()));
 
-        String splitLocationsText[] = splitLocationString(currentEQ.getmLocation());
+        String splitLocationsText[] = splitLocationString(currentEQ.getLocation());
         offsetLocationTV.setText(splitLocationsText[0]);
         primaryLocationTV.setText(splitLocationsText[1]);
 
         return listItem;
 
+    }
+
+    private int getMagnitudeColor(double magnitude) {
+        int magColorResourceId;
+        int intMag = (int) Math.floor(magnitude);
+        switch (intMag) {
+            case 0:
+            case 1:
+                magColorResourceId = R.color.magnitude1;
+                break;
+            case 2:
+                magColorResourceId = R.color.magnitude2;
+                break;
+            case 3:
+                magColorResourceId = R.color.magnitude3;
+                break;
+            case 4:
+                magColorResourceId = R.color.magnitude4;
+                break;
+            case 5:
+                magColorResourceId = R.color.magnitude5;
+                break;
+            case 6:
+                magColorResourceId = R.color.magnitude6;
+                break;
+            case 7:
+                magColorResourceId = R.color.magnitude7;
+                break;
+            case 8:
+                magColorResourceId = R.color.magnitude8;
+                break;
+            case 9:
+                magColorResourceId = R.color.magnitude9;
+                break;
+            default:
+                magColorResourceId = R.color.magnitude10plus;
+                break;
+        }
+        return magColorResourceId;
     }
 
     /**

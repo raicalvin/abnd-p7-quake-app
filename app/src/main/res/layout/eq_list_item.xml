@@ -1,44 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:padding="16dp">
 
     <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:id="@+id/magnitude_text_view"
-        tools:text="4.5"/>
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/magnitude_circle"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        tools:text="8.9" />
 
-    <TextView
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_weight="1"
-        android:id="@+id/location_offset_text_view"
-        tools:text="San Francisco"/>
+        android:gravity="center_horizontal|left">
 
-    <TextView
+        <TextView
+            android:id="@+id/location_offset_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="10km NW of"
+            android:textSize="12sp"
+            android:textColor="@color/textColorEarthquakeDetails"/>
+
+        <TextView
+            android:id="@+id/location_primary_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="San Francisco"
+            android:textSize="16sp"
+            android:textColor="@color/textColorEarthquakeLocation"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_weight="1"
-        android:id="@+id/location_primary_text_view"
-        tools:text="San Francisco"/>
+        android:gravity="center_horizontal|right">
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:id="@+id/date_text_view"
-        tools:text="Feb 2, 2016"/>
+        <TextView
+            android:id="@+id/date_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="Feb 2, 2016"
+            android:textSize="12sp"
+            android:textColor="@color/textColorEarthquakeDetails"/>
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:id="@+id/time_text_view"
-        tools:text="3:00 PM"/>
+        <TextView
+            android:id="@+id/time_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="3:00 PM"
+            android:textSize="12sp"
+            android:textColor="@color/textColorEarthquakeDetails"/>
+
+    </LinearLayout>
+
+
+
+
 
 </LinearLayout>
