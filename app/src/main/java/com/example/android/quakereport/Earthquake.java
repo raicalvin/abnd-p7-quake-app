@@ -25,5 +25,5 @@ public class Earthquake {
         return mTimeInMilliseconds;
     }
 
-    public String getEqURL() { return mEqURL; }
+    public String getUrl() { return mEqURL; }
 }
