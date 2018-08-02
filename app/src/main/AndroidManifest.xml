@@ -31,5 +31,7 @@
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Add the following to check for network access and connectivity -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
 </manifest>
